@@ -32,6 +32,11 @@ Vagrant::configure("2") do |config|
     duo.vm.provision :salt, &provision_salt
   end
 
+  config.vm.define "duo-vpn-001" do |duo|
+    duo.vm.hostname = "duo-vpn-001"
+    duo.vm.provision :salt, &provision_salt
+  end
+
   config.vm.define "fluentd" do |fluentd|
     fluentd.vm.hostname = "fluentd"
     fluentd.vm.provision :salt, &provision_salt
