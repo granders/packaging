@@ -1,9 +1,9 @@
 {% set VERSION = '0.0.2' %}
 
-install_nodejs:
-  pkg.installed:
-    - sources:
-      - nodejs: salt://files/nodejs_6.14.4-1nodesource1_amd64.deb
+add_nodesource_repo:
+  cmd.run:
+    - name: 'curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -'
+    - user: root
 
 install_kafka_native_packages:
   pkg.installed:
@@ -12,8 +12,7 @@ install_kafka_native_packages:
       - openssl
       - libssl-dev
       - libsasl2-dev
-    - require:
-      - pkg: install_nodejs
+      - nodejs
 
 kafka_native_repo:
   git.latest:
