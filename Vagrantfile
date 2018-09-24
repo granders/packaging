@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant::configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.synced_folder "salt", "/srv/salt/"
 
   provision_salt = Proc.new do |salt|
@@ -49,6 +49,11 @@ Vagrant::configure("2") do |config|
 
   config.vm.define "librdkafka" do |heap|
     heap.vm.hostname = "librdkafka"
+    heap.vm.provision :salt, &provision_salt
+  end
+
+  config.vm.define "librdkafka-node6" do |heap|
+    heap.vm.hostname = "librdkafka-node6"
     heap.vm.provision :salt, &provision_salt
   end
 

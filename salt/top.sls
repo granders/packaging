@@ -15,3 +15,5 @@ base:
     - heap_openvpn
   'librdkafka':
     - librdkafka
+  'librdkafka-node6':
+    - librdkafka-node6
